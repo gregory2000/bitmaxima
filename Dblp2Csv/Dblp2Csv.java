@@ -15,6 +15,10 @@ import org.xml.sax.helpers.*;
 
 /**
  * Dblp2Csv.java - this program converts a dblp.xml file into a CSV file.
+ * Current implementation works by processing one article(paper) at a time.
+ * it accumulates all the information about that article(paper) in a DblpRecord
+ * instance named currentRecord.  When a record has been completely parsed,
+ * it outputs that record once for every author of that article(paper).
  *
  * @author Jason Zien (jasonz@gmail.com)
  *
