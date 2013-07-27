@@ -100,6 +100,11 @@ public class Dblp2Csv {
 	boolean insideUrl = false;
 	boolean insideEe = false;
 
+	/**
+	 * startElement - this is a callback from the Sax parser for when it finds a
+	 * starting tag element, for example, <author>.
+	 * @param tagName - this is the name of the tag, without the angle brackets.
+	 */
         public void startElement(String namespaceURI, String localName, String tagName, Attributes atts) throws SAXException {
 
 	    if (articleTypes.get(tagName)!=null) {
@@ -126,6 +131,11 @@ public class Dblp2Csv {
 	    }
         }
 
+	/**
+	 * endElement - this is a callback from the Sax parser for when it finds an
+	 * ending tag element, for example, </author>.
+	 * @param tagName - this is the name of the tag, without the angle brackets and slash.
+	 */
         public void endElement(String namespaceURI, String localName, String tagName) throws SAXException {
 	    if (articleTypes.get(tagName)!=null) {
 		insideArticle=false;
@@ -151,6 +161,14 @@ public class Dblp2Csv {
 	    }
         }
 
+	/**
+	 * characters - this is a callback from the Sax parser for text that appears
+	 * between the start and end tag.  For instance, given <author>Jason Z</author>,
+	 * it would return "Jason Z".
+	 * You use this in conjunction with state information you know about where
+	 * you are in the tag structure by keeping track of the state based on the
+	 * startElement and endElement items you have seen so far.
+	 */
         public void characters(char[] ch, int start, int length)
 	    throws SAXException {
             if (insideArticle) {
