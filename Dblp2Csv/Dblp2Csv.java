@@ -90,6 +90,9 @@ public class Dblp2Csv {
     // the current DblpRecord being processed
     DblpRecord currentRecord = new DblpRecord();
 
+    // the current string being processed;
+    StringBuilder currentStringBuilder = new StringBuilder();
+
     /**
      * DblpHandler - this is the main class that does the work of
      * handling the Sax Parser callbacks.  It extends the Sax Parser
@@ -133,6 +136,9 @@ public class Dblp2Csv {
 	    else if (tagName.equals("ee")) {
 		insideEe=true;
 	    }
+
+	    // clear the current string
+	    currentStringBuilder.setLength(0);
         }
 
 	/**
@@ -146,21 +152,27 @@ public class Dblp2Csv {
 		currentRecord.outputCsv();
             }
             else if (tagName.equals("author")) {
+		currentRecord.authors.add(currentStringBuilder.toString());
 		insideAuthor=false;
             }
             else if (tagName.equals("title")) {
+		currentRecord.title = currentStringBuilder.toString();
 		insideTitle=false;
             }
 	    else if (tagName.equals("year")) {
+		currentRecord.year = currentStringBuilder.toString();
 		insideYear=false;
 	    }
 	    else if (tagName.equals("journal") || tagName.equals("booktitle")) {
+		currentRecord.journal = currentStringBuilder.toString();
 		insideJournal=false;
 	    }
 	    else if (tagName.equals("url")) {
+		currentRecord.url = currentStringBuilder.toString();
 		insideUrl=false;
 	    }
 	    else if (tagName.equals("ee")) {
+		currentRecord.ee = currentStringBuilder.toString();
 		insideEe=false;
 	    }
         }
@@ -178,24 +190,7 @@ public class Dblp2Csv {
             if (insideArticle) {
 		String s = new String(ch, start, length);
 
-		if (insideAuthor) {
-		    currentRecord.authors.add(s);
-		}
-		else if (insideTitle) {
-		    currentRecord.title = s;
-		}
-		else if (insideYear) {
-		    currentRecord.year = s;
-		}
-		else if (insideJournal) {
-		    currentRecord.journal = s;
-		}
-		else if (insideUrl) {
-		    currentRecord.url = s;
-		}
-		else if (insideEe) {
-		    currentRecord.ee = s;
-		}
+		currentStringBuilder.append(s);
 	    }
         }
 
