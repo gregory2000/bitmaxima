@@ -73,7 +73,7 @@ public class Dblp2Csv {
 	 */
 	public void outputCsv() {
 	    for (String author : authors) {
-		System.out.println(""+currentRecordNumber);
+		System.out.print(""+currentRecordNumber);
 		System.out.print(",");
 		System.out.print(StringEscapeUtils.escapeCsv(title));
 		System.out.print(",");
