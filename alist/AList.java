@@ -104,7 +104,7 @@ public class AList {
 
 	    // sleep to slow down the fetches
 	    // you MUST do no more than 1000 fetches per hour (3.6 seconds per fetch)
-	    Thread.sleep(4 + r.nextInt(5));
+	    Thread.sleep(4000 + r.nextInt(5)*1000);
 	}
     }
 
