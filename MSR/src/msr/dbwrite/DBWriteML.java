@@ -1,4 +1,4 @@
-package msr;
+package msr.dbwrite;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +21,7 @@ import com.avaje.ebean.config.GlobalProperties;
  * @author g42gregory
  *
  */
-public class DBWrite 
+public class DBWriteML 
 {
 	//File name global variable
 	static String fileName = "";
