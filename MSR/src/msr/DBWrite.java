@@ -8,9 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import com.microsoft.research.Author;
+import com.microsoft.research.Domain;
 import com.microsoft.research.PagedList;
 
-import tables.Authors;
+import tables.MLAuthor;
 
 import com.avaje.ebean.Ebean;  
 import com.avaje.ebean.config.GlobalProperties;
@@ -22,40 +23,68 @@ import com.avaje.ebean.config.GlobalProperties;
  */
 public class DBWrite 
 {
+	//File name global variable
+	static String fileName = "";
 	
-	public static void testDB()
+	//Query number start
+	static int start = 0;
+	
+	//Query number end
+	static int end = 0;
+	
+	//starting rank of the batch
+	static int rankStart = 0;
+
+	public static void printAuthor(MLAuthor a)
 	{
-		//System.setProperty("catalina.base", "D:/apps/tomcat6");  
-        System.setProperty("ebean.props.file", "ebean.properties");  
-        GlobalProperties.put("ebean.debug.sql", "true");  
-    
-    		//whether or not drop table at the beginning of the run: 
-    		GlobalProperties.put("ebean.ddl.run", "true");
-    	
-        Authors e = new Authors();  
-        e.setName("test1");  
-        e.setDescription("something1");  
-          
-        // will insert  
-        Ebean.save(e);  
-          
-        e.setDescription("changed1");  
-          
-        // this will update  
-        Ebean.save(e);  
+		System.out.println(a.getHomepageURL());
+		System.out.println(a.getHomepageURL().length());
+	}
+	
+	public static void writeDB(Author result, int rank)
+	{
+        MLAuthor a = new MLAuthor();  
+     
+        a.setRank(rank);
+        a.setID(result.getID().intValue());
+        a.setPublicationCount(result.getPublicationCount().intValue());
+        a.setCitationCount(result.getCitationCount().intValue());
+        a.setFirstName(result.getFirstName());
+        a.setMiddleName(result.getMiddleName());
+        a.setLastName(result.getLastName());
+        a.setNativeName(result.getNativeName());
+        a.setHomepageURL(result.getHomepageURL());
+        if (result.getAffiliation() != null)
+        {
+        		a.setOrgID(result.getAffiliation().getID().intValue());
+        		a.setOrgName(result.getAffiliation().getName());
+        }
+        	a.setDisplayPhotoURL(result.getDisplayPhotoURL());
+        a.setHIndex(result.getHIndex().intValue());
+        a.setGIndex(result.getGIndex().intValue());
         
-        Authors q = new Authors();  
-        q.setName("test2");  
-        q.setDescription("something2");  
-          
-        // will insert  
-        Ebean.save(q); 
-        
-        
-        
+        int s = result.getResearchInterestDomain().size();
+        	if (s > 0)
+        		a.setDom1(result.getResearchInterestDomain().get(0).getName());
+        	if (s > 1)
+        		a.setDom2(result.getResearchInterestDomain().get(1).getName());
+        	if (s > 2)
+        		a.setDom3(result.getResearchInterestDomain().get(2).getName());
+        	if (s > 3)
+        		System.out.println("too many domains!");
+       
+        	try
+        	{
+        		Ebean.save(a);
+        	}
+        	catch(Exception e)
+        	{
+        		printAuthor(a);
+        	}
+        	
         // find the inserted entity by its id  
-        Authors e2 = Ebean.find(Authors.class, e.getId());  
-        System.out.println("Got "+e2.getDescription());  
+        //MLAuthor e2 = Ebean.find(MLAuthor.class, e.getRowId());  
+        //System.out.println("Got "+e2.getFirstName());  
           
         //Ebean.delete(e);  
         // can use delete by id when you don't have the bean  
@@ -65,14 +94,20 @@ public class DBWrite
 	
 	private static void read(ObjectInputStream in) throws ClassNotFoundException, IOException 
 	{
-		for (int i = 0; i < 6000; i++)
+		int rank = 0; //author rank on the system
+		for (int i = start; i < end; i++)
 		{
 			@SuppressWarnings("unchecked")
 			PagedList<Author> response = (PagedList<Author>) in.readObject();
 			System.out.println(response.getStartIndex()+" - "+response.getEndIndex()+" of:"+response.getTotalItems());
+			int j = 0;
 			for (Author result : response)
 			{
-                	/**
+				j++;
+				rank = rankStart + i * 100 + j;
+                	writeDB(result, rank);
+			
+				/**
 				System.out.println(result.getFirstName() + " " + result.getLastName() + " " + result.getID());                       
 				System.out.println(result.getHomepageURL());                    
                 if (result.getAffiliation() != null)
@@ -89,14 +124,23 @@ public class DBWrite
 	}
 	
 	public static void main(String[] arg) throws FileNotFoundException, IOException, ClassNotFoundException
-	{
+	{		
+		//System.setProperty("catalina.base", "D:/apps/tomcat6");  
+        System.setProperty("ebean.props.file", "ebean.properties");  
+        GlobalProperties.put("ebean.debug.sql", "true");  
+    
+    		//whether or not drop table at the beginning of the run: 
+    		GlobalProperties.put("ebean.ddl.run", "false");
+	
+		fileName = "/Users/g42gregory/Dropbox/1_AI_People/data/msasearch/ml_authors/ml_auth_140001_143903.dat";
+		start = 0;
+		end = 40;
+		rankStart = 140000;
 		
+		ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
 		
-		//ObjectInputStream in = new ObjectInputStream(new FileInputStream("/Users/g42gregory/Dropbox/1_AI_People/data/msasearch/cs_authors/cs_authors_900001_1000000.dat"));
-		//read(in);
-		//in.close();
+		read(in);
+		in.close();
 	}
-
-
 	
 }
