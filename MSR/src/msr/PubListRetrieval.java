@@ -45,6 +45,9 @@ public class PubListRetrieval {
 	//Query number end
 	static int end = 0;
 	
+	//Subdomain number
+	static int subDomain = 0;
+	
     /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "appid";
         
@@ -65,9 +68,10 @@ public class PubListRetrieval {
      */
         public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException {
         
-        start = Integer.parseInt(args[2]);
-        end = Integer.parseInt(args[3]);
-        fileName = args[4];
+        subDomain = Integer.parseInt(args[2]);
+        	start = Integer.parseInt(args[3]);
+        end = Integer.parseInt(args[4]);
+        fileName = args[5];
         	
         		Options options = buildOptions();
         try {
@@ -100,10 +104,10 @@ public class PubListRetrieval {
                 	for (int i = start; i < end; i++)
                 	{
                 		PublicationSearchQuery query = factory.newPublicationSearchQuery();
-                		PagedList<Publication> response = query.withAuthorId(316045).withStartIndex(i * 100 + 1).withEndIndex((i + 1) * 100).list();
+                		PagedList<Publication> response = query.withDomainId(2).withSubDomainId(subDomain).withStartIndex(i * 100 + 1).withEndIndex((i + 1) * 100).list();
                 		out.writeObject(response);
                 		printResponse(response);
-                		int rand = 500 + (int)(Math.random() * ((700 - 500) + 1));
+                		int rand = 200 + (int)(Math.random() * ((250 - 200) + 1));
                 		Thread.sleep(rand);
                 	}
                 	out.close();
@@ -119,10 +123,12 @@ public class PubListRetrieval {
          */
         private static void printResponse(PagedList<Publication> response) {
                 System.out.println(response.getStartIndex()+" - "+response.getEndIndex()+" of:"+response.getTotalItems());
-                
+                /**
                 for (Publication result : response) {
                 	  		System.out.println("Title: "+result.getTitle());
                 	  		System.out.println(result.getYear());
+                	  		System.out.println("Citations: "+result.getCitationCount());
+                	  		
                 	  		System.out.println("Abstract: "+result.getAbstract());
                 	  		List<Keyword> keywords = result.getKeyword();
                 	  		System.out.print("Keywords: ");
@@ -136,20 +142,23 @@ public class PubListRetrieval {
                         {
                         		System.out.println("   "+author.getFirstName()+" "+author.getMiddleName()+" "+author.getLastName());
                        }
+                       
+                	  		
+                	  		
                 	  		//+ " " + result.getLastName() + " " + result.getID());                       
-                	  		/**
-                        	System.out.println(result.getHomepageURL());                    
-                        	if (result.getAffiliation() != null)
-                        	{    
-                        			System.out.println(result.getAffiliation().getID()+": "+result.getAffiliation().getName());
-                			} else 
-                			{
-                				System.out.println("null");
-                			}
-                			**/
+                	  		
+                        //	System.out.println(result.getHomepageURL());                    
+                        	//if (result.getAffiliation() != null)
+                        	//{    
+                        	//		System.out.println(result.getAffiliation().getID()+": "+result.getAffiliation().getName());
+                			//} else 
+                			//{
+                			//	System.out.println("null");
+                			//}
+                			
                 	  		System.out.println("=======================================");                  
                 }
-                
+                **/
                 //System.out.println(response.getTotalItems());
                 
         }
