@@ -6,6 +6,25 @@
     width:90%;
 }
 
-body{
-    padding:25px;
+body {
+    max-width: 1400px;
+    margin : 0 auto;
+}
+
+[contenteditable]:hover,
+[contenteditable]:focus {
+  outline: 1px dotted #ccc;
+  background-color: #F8F8F8;
+}
+
+/* Copy from jemdoc css for h1 */
+input.h1{
+    color: #527bbd;
+	margin-top: 0.7em;
+	margin-bottom: 0.3em;
+	padding-bottom: 0.2em;
+	line-height: 1.0;
+	padding-top: 0.5em;
+	border-bottom: 1px solid #aaaaaa;
+	font-size: 165%;
 }

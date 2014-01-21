@@ -6,7 +6,8 @@
 
     <title>Google search result curator</title>
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/jemdoc.css">
+    <!-- link rel="stylesheet" href="css/bootstrap.css" -->
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
 
     <script src="lib/jquery/jquery-1.10.2.js"></script>
@@ -21,18 +22,21 @@
 </head>
 <body ng-controller="SearchInputCtrl">
     <div class="row-fluid">
-        <div class="span6">
-            Enter query and hit enter: <input ng-model="query" ng-keyup="processQuery($event)" />
+        <div id="layout-menu" class="span2">
+            <div class="menu-category">{{ displayQuery(); }}</div>
         </div>
-        <div class="span6">
-            <form class="navbar-form pull-left">
+        <div class="span10">
+            <div id="toptitle">
+                <h1 ng-model="query" contenteditable="true" plain-text="true"
+                    required ng-keydown="processQuery($event)">Your name here
+                </h1>
+                    
+            <!-- form class="navbar-form pull-left">
                 <input type="text" ng-model="setName" ng-keyup="syncSelection($event)">
                 <button type="submit" class="btn" ng-click="syncSelection($event)">sync</button>
-            </form>
+            </form -->
         </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span6">
+        <div>
             <ul>
                 <li ng-repeat="result in results" class="searchresult" ng-click="selectResult($index)">
                     <b>{{result.title}}</b>
