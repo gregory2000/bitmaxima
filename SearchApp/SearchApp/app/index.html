@@ -19,47 +19,46 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
 
+    <script src="js/jquery-placeholder.js"></script>
+    <script src="js/angular-placeholder.js"></script>
 </head>
 <body ng-controller="SearchInputCtrl">
     <div class="row-fluid">
         <div id="layout-menu" class="span2">
-            <div class="menu-category">{{ displayQuery(); }}</div>
+            <div class="menu-category">{{query+" "}}</div>
         </div>
         <div class="span10">
             <div id="toptitle">
-                <h1 ng-model="query" contenteditable="true" plain-text="true"
-                    required ng-keydown="processQuery($event)">Your name here
-                </h1>
-                    
-            <!-- form class="navbar-form pull-left">
-                <input type="text" ng-model="setName" ng-keyup="syncSelection($event)">
-                <button type="submit" class="btn" ng-click="syncSelection($event)">sync</button>
-            </form -->
-        </div>
-        <div>
-            <ul>
-                <li ng-repeat="result in results" class="searchresult" ng-click="selectResult($index)">
-                    <b>{{result.title}}</b>
-                    <p>
-                        <a href="{{result.link}}">{{result.link}}</a> <br />
-                        <span class="description">{{result.description}}</span>
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="span6">
-            <ul>
-                <li ng-repeat="result in selected" class="searchresult">
-                    <b>{{result.title}}</b>
-                    <p>
-                        <a href="{{result.link}}">{{result.link}}</a> <br />
-                        <span class="description">{{result.description}}</span>
-                    </p>
-                </li>
-            </ul>
+                <input ng-model="query" placeholder="Your name here" class="h1" ng-keyup="processQuery($event)" />
+                <!-- form class="navbar-form pull-left">
+                    <input type="text" ng-model="setName" ng-keyup="syncSelection($event)">
+                    <button type="submit" class="btn" ng-click="syncSelection($event)">sync</button>
+                </form -->
+            </div>
+            <div>
+                <ul>
+                    <li ng-repeat="result in results" class="searchresult" ng-click="selectResult($index)">
+                        <b>{{result.title}}</b>
+                        <p>
+                            <a href="{{result.link}}">{{result.link}}</a> <br />
+                            <span class="description">{{result.description}}</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="span6">
+                <ul>
+                    <li ng-repeat="result in selected" class="searchresult">
+                        <b>{{result.title}}</b>
+                        <p>
+                            <a href="{{result.link}}">{{result.link}}</a> <br />
+                            <span class="description">{{result.description}}</span>
+                        </p>
+                    </li>
+                </ul>
 
+            </div>
         </div>
-    </div>
 
 
 </body>
