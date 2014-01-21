@@ -1,2 +1,4 @@
-PersonalPage_test/.idea/
-PersonalPage_test/node_modules/
+PersonalPage_test/Page_Server/.idea/
+PersonalPage_test/Page_Server/node_modules/
+PersonalPage_test/Page_Client/.idea/
+PersonalPage_test/Page_Client/node_modules/
