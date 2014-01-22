@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="jemdoc.css" type="text/css" />
+    <link rel="stylesheet" href="jacob.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.js"></script>
+    <script src="page.js"></script>
+    <title>George Gregory</title>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body ng-app="page">
+<table summary="Table for page layout." id="tlayout">
+    <tr valign="top">
+        <td id="layout-menu">
+            <div class="menu-category">George Gregory</div>
+            <div class="menu-item"><a href="#Home" class="current">Home</a></div>
+            <div class="menu-item"><a href="#Career">Career</a></div>
+            <div class="menu-item"><a href="#Bio">Bio</a></div>
+            <div class="menu-item"><a href="#Contact">Contact</a></div>
+            <div class="menu-category">Class Projects</div>
+            <div class="menu-item"><a href="#CS224N">CS224N</a></div>
+            <div class="menu-item"><a href="#CS224S">CS224S</a></div>
+        </td>
+        <td id="layout-content">
+            <div id="toptitle">
+                <h1>George Gregory &ndash; Practical AI</h1>
+                <div id="subtitle"><a href="http://blog.gregory2000.com">George Gregory</a> (<a href="mailto:george@gregory2000.com">george@gregory2000.com</a>)</div>
+            </div>
+
+            <h2>Dynamic Content</h2>
+
+            <div class="viewContent" ng-view></div>
+
+            <div id="footer">
+                <div id="footer-text">
+                    Copyright &copy; 2014 BitMaxima.
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
