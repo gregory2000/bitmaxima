@@ -1,12 +1,16 @@
+<div ng-controller="PageCtrl">
+<div>
+    Hello!
 <div ng-show="div_visible"
      ng-click="div_onfocus()"
+     ng-bind-html="text"
+     ng-class="{mouseover: hover}"
+     ng-mouseenter="hover = true"
+     ng-mouseleave="hover = false"
     >
-{{text}}
 </div>
 <div>
     <textarea name="message" style="width: 100%; height: 150px;"
-              onfocus="if(this.value==this.defaultValue)this.value='';"
-              onblur="if(this.value=='')this.value=this.defaultValue;"
               ng-show="edit_visible"
               ng-blur="edit_onblur()"
               ng-model="text"
@@ -17,4 +21,9 @@
     </textarea>
 </div>
 
-<!-- if(this.value==this.defaultValue)this.value=''; -->
+    <!--add extra couple of lines.-->
+    <br/>
+    <br/>
+</div>
+
+</div>
