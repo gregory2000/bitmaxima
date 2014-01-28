@@ -1,0 +1,26 @@
+{
+  "name": "BitMaxima",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description" : "Knowledge Base",
+  "icons": { "19": "digital_globe.png" },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "google_icon.png"
+    },
+    "default_title": "Tech Knowledge Base",
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["jquery-1.10.2.js", "angular.js", "myscript.js"]
+    }
+  ],
+
+
+  "permissions": ["tabs", "http://*/*", "https://*/*"]
+
+}

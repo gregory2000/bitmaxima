@@ -21,12 +21,17 @@ db.open(function(err, db) {
 
 exports.get_text = function(req, res) {
     db.collection('page_text', {}, function(err, collection) {
-        collection.findOne({"pageId": 0, "itemId": 0}, function(err, item) {
+        collection.find({"pageId": 0, "itemId": 0}, function(err, datacursor) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
             res.header("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
 
-            res.send(item);
+            datacursor.toArray(function(err, alldata){
+                console.log(alldata);
+                res.send(alldata);
+            });
+
+
         });
     });
 };

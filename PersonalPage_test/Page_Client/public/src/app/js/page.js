@@ -20,27 +20,28 @@ angular.module('page', ['ngRoute', 'ngSanitize'])
         var futureResponse = $http.get('http://localhost:4000/get_data');
 
         futureResponse.success(function (data, status, headers, config) {
-            $scope.text = data.text;
+            //alert(data[0].text);
+            $scope.text = data[0].text;
         });
 
         futureResponse.error(function (data, status, headers, config) {
             throw new Error('Something went wrong...');
         });
 
-        $scope.items = [0];
+
         $scope.pageId = 0;
         $scope.itemId = 0;
 
         $scope.edit_visible = false;
         $scope.div_visible = true;
         $scope.div_onfocus = function() {
-        $scope.div_visible = false;
-        $scope.edit_visible = true;
+            $scope.div_visible = false;
+            $scope.edit_visible = true;
 
             //make edit window focused right away, uses jQuery
             $timeout(function() {
                 $('#edit_box').focus();
-            }, 0);
+            }, 5);
 
         };
         $scope.edit_onblur = function() {
