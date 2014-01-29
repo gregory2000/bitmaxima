@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+</head>
+<body>
+<script>
+
+    function showPreview(path, i, show){
+        $(document).ready(function(){
+            if (show == 1){
+                if ($('.preview#'+ i).length > 0 ){
+                    $('.preview#'+ i).css('visibility', 'visible');
+                }
+                else{
+                    var previewElem = $('<div id ="init" class="preview">' +
+                            '<img id ="previewImg" class="image" src="">' +
+                            '</div>');
+                    previewElem.attr('id', i);
+
+                    $('body').append(previewElem);
+                    var img = $('img#previewImg');
+                    img.attr('id', i);
+                    img.attr('src', path);
+
+                    $('.preview#'+ i).css('visibility', 'visible');
+                }
+            }
+            else {
+                $('.preview#'+ i).css('visibility', 'hidden');
+            }
+        });
+
+    }
+    //showPreview('/images/10943-1j5zdhn.jpg');
+
+</script>
+
+<h1><%= title %>:</h1>
+
+<% for(var i=0; i<pages.length; i++) { %>
+<div class="page">
+    <div class="previewLink">
+
+        <a rel="prefetch" href='<%= pages[i].imgPath %>' target="_blank"
+            onMouseOver="showPreview('<%= pages[i].imgPath %>','<%= i %>', 1)"
+                onMouseOut="showPreview('','<%= i %>', 0)">
+            PREVIEW
+        </a>
+
+    </div>
+
+    <div class="pageLink">
+
+        <a rel="prefetch" href='<%= pages[i].url %>' target="_blank">
+            <%= pages[i].title %>
+        </a>
+
+    </div>
+
+</div>
+<% } %>
+
+
+</body>
+</html>

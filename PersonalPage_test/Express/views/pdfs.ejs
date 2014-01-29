@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+</head>
+<body>
+<script>
+
+</script>
+
+<h1><%= title %>:</h1>
+
+<% for(var i=0; i<pdfs.length; i++) { %>
+<div class="page">
+    <div class="previewLink">
+        <a href='<%= pdfs[i].pdfPath %>' target="_blank">
+            <img src="/images/pdf_logo.gif" >
+            </img>
+        </a>
+    </div>
+
+    <div class="pageLink">
+
+        <a rel="prefetch" href='<%= pdfs[i].pdfPath %>' target="_blank">
+            title placeholder
+        </a>
+
+    </div>
+
+</div>
+<% } %>
+
+
+</body>
+</html>
