@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
+
+    <!-- add library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- add summernote -->
+    <link href="http://hackerwins.github.io/summernote/summernote-dist/summernote.css" rel="stylesheet">
+    <script src="http://hackerwins.github.io/summernote/summernote-dist/summernote.min.js"></script>
+
+    <script src="http://labs.sideeffect.kr/2014/angular-summernote/v0.2.0/dist/angular-summernote.min.js"></script>
+
+    <script src="summernoteDemo.js"></script>
+
+</head>
+
+
+<body ng-app="summernoteDemo">
+
+<h1>angular-summernote</h1>
+<p>angular directive for <a href="http://hackerwins.github.io/summernote/">Summernote</a></p>
+
+<h2>summernote directive</h2>
+
+<h4>use element</h4>
+<summernote></summernote>
+
+<h4>use attribute</h4>
+<div summernote></div>
+
+<h2>summernote options</h2>
+
+<h4>height</h4>
+<summernote height="300"></summernote>
+
+<h4>focus</h4>
+<summernote focus></summernote>
+
+<div ng-controller="OptCtrl">
+    <h4>options object</h4>
+    <summernote config="options"></summernote>
+</div>
+
+<div ng-controller="CodeCtrl">
+    <h4>code : HTML string in summernote</h4>
+    <summernote ng-model="text"></summernote>
+
+    <br>
+    <textarea type="text" ng-model="text" style="width:100%;"></textarea></br>
+    text : {{text}}
+</div>
+
+
+</body>
+</html>

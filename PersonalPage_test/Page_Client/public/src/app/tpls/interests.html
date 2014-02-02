@@ -1,0 +1,58 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 800,
+            tabsize: 2,
+            codemirror: {
+                theme: 'monokai'
+            },
+            oninit: function(){
+                //$('.summernote').code("hello");
+
+                $.ajax({
+                    url: "http://localhost:4000/get_data",
+                    type: "GET",
+                    success: function(data)
+                    {
+                        //populate the TextArea
+                        //alert(data[2].text);
+                        $('.summernote').code(data[2].text);
+                        $('#display').html($('.summernote').code());
+                    }
+                });
+
+            },
+
+            onblur: function(){
+
+                var data = {"pageId": 2, "itemId": 0, "text": $('.summernote').code()}
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:4000/save_data',
+                    data: data
+                });
+                $('.summernote').hide();
+                //alert('blur-red');
+            }
+        });
+
+        $('form').on('submit', function (e) {
+            alert($('.summernote').code());
+        });
+
+
+
+    });
+
+</script>
+<div id="display">
+
+</div>
+
+<div>
+    <form>
+        <textarea id="page2_editor" class="summernote"></textarea>
+        <button id="button" type="submit" class="btn btn-default">submit</button>
+    </form>
+
+</div>
