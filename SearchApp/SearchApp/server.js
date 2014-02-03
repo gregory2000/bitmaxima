@@ -114,67 +114,64 @@ StaticServlet.MimeMap = {
     'png': 'image/png'
 };
 
-StaticServlet.prototype.handleRequest = function (req, res) {
 
-    function handleSearchResponse (err, next, links) {
-        if (err) console.error(err);
-        res.writeHead(200, {
-            'Content-Type': StaticServlet.MimeMap['json']
-        });
-        res.write(JSON.stringify(links));
-        res.end();
-    }
+StaticServlet.prototype.handleRequest = function(req, res) {
 
-    if(req.url.path.indexOf("/search")==0
-        && req.url.query['query']
-        ) {
-        query = req.url.query['query'];
-        google(query, handleSearchResponse);
-        
-        // bing api is broken 
-        // var bingEngine = bing.SearchClient({'appId':'/bJ/X//hwk0ljjbbEUyS0OIjoLxyRpWm/NPRJ7Geq7o='});    
-        // bingEngine.search(query, handleSearchResponse);
-    }
-    else if (req.url.path.indexOf("/sync")==0
-        && req.url.query['set']
-        ) {
-        var setName = req.url.query['set'];
-        var body = "";
-        req.on('data', function (chunk) {
-            body += chunk;
-        });
-        req.on('end', function () {
-            var data = JSON.parse(body || "[]");
-            var storedData = storage.getItem(setName);
-            dataToBeStored = mergeResults(storedData, data);            
-            util.puts(JSON.stringify(dataToBeStored));
+	function handleSearchResponse(err, next, links) {
+		if (err)
+			console.error(err);
+		res.writeHead(200, {
+			'Content-Type' : StaticServlet.MimeMap['json']
+		});
+		res.write(JSON.stringify(links));
+		res.end();
+	}
 
-            storage.setItem(setName, dataToBeStored);
-            var response = JSON.stringify(dataToBeStored);
-            res.write(response);
-            res.end();
+	if (req.url.path.indexOf("/search") == 0 && req.url.query['query']) {
+		query = req.url.query['query'];
+		google(query, handleSearchResponse);
 
-             storage.persist();
-        });
-    }
-    else{
-        var self = this;
-        var path = ('./app/' + req.url.pathname).replace('//', '/').replace(/%(..)/g, function (match, hex) {
-            return String.fromCharCode(parseInt(hex, 16));
-        });
-    
-        var parts = path.split('/');
-        if (parts[parts.length - 1].charAt(0) === '.')
-            return self.sendForbidden_(req, res, path);
-        fs.stat(path, function (err, stat) {
-            if (err)
-                return self.sendMissing_(req, res, path);
-            if (stat.isDirectory())
-                return self.sendDirectory_(req, res, path);
-            return self.sendFile_(req, res, path);
-        });
-    }
-}
+		// bing api is broken
+		// var bingEngine = bing.SearchClient({'appId':'/bJ/X//hwk0ljjbbEUyS0OIjoLxyRpWm/NPRJ7Geq7o='});
+		// bingEngine.search(query, handleSearchResponse);
+	} else if (req.url.path.indexOf("/sync") == 0 && req.url.query['set']) {
+		var setName = req.url.query['set'];
+		var body = "";
+		req.on('data', function(chunk) {
+			body += chunk;
+		});
+		req.on('end', function() {
+			var data = JSON.parse(body || "[]");
+			var storedData = storage.getItem(setName);
+			dataToBeStored = mergeResults(storedData, data);
+			util.puts(JSON.stringify(dataToBeStored));
+
+			storage.setItem(setName, dataToBeStored);
+			var response = JSON.stringify(dataToBeStored);
+			res.write(response);
+			res.end();
+
+			storage.persist();
+		});
+	} else {
+		var self = this;
+		var path = ('./app/' + req.url.pathname).replace('//', '/').replace(/%(..)/g, function(match, hex) {
+			return String.fromCharCode(parseInt(hex, 16));
+		});
+
+		var parts = path.split('/');
+		if (parts[parts.length - 1].charAt(0) === '.')
+			return self.sendForbidden_(req, res, path);
+		fs.stat(path, function(err, stat) {
+			if (err)
+				return self.sendMissing_(req, res, path);
+			if (stat.isDirectory())
+				return self.sendDirectory_(req, res, path);
+			return self.sendFile_(req, res, path);
+		});
+	}
+};
+
 
 StaticServlet.prototype.sendError_ = function (req, res, error) {
     res.writeHead(500, {

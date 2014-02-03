@@ -28,11 +28,11 @@ searchCuratorApp.controller('SearchInputCtrl', ['$scope', '$http',
                     });
                 });
             }
-        }
+        };
 		
         $scope.selectResult = function(index) {
             $scope.selected.push($scope.results[index]);
-        }
+        };
 
         $scope.syncSelection = function (event) {
             if (!$scope.insync && (event.keyCode == 13 || event.type == "click")) {
@@ -44,7 +44,7 @@ searchCuratorApp.controller('SearchInputCtrl', ['$scope', '$http',
                         $scope.insync = false;
                     });
             }
-        }
+        };
     }
 ]);
 	
