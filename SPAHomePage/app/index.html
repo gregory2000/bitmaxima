@@ -13,17 +13,18 @@
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-sortable.js"></script>
+    <script src="lib/angular/angular-resource.js"></script>
 
     <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
 </head>
 <body>
     <div class="row-fluid">
-        <div id="layout-menu" class="span2" ng-controller="navigationCtrl"
-             ui-sortable="sortableOptions" ng-model="navSections" class="list">
-            <div ng-repeat="section in navSections" class="menu-category">
-                {{section}}
-            </div>
-        </div>
+        <sh-nav-menu id="layout-menu" class="list span2"  
+                     ng-controller="navigationCtrl" 
+                     ng-model="navSections">
+
+        </sh-nav-menu>
         <div class="span10">
 
         </div>

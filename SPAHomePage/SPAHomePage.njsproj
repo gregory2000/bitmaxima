@@ -29,6 +29,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\js\services.js" />
     <Compile Include="server.js" />
     <Compile Include="app\js\app.js" />
     <Compile Include="app\lib\angular\angular-animate.js" />
@@ -313,6 +314,8 @@
     <Content Include="app\lib\angular\version.json" />
     <Content Include="app\lib\angular\version.txt" />
     <Content Include="app\lib\jquery\jquery-1.10.2.min.map" />
+    <Content Include="app\model\navSections.json" />
+    <Content Include="app\partials\nav-menu.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -325,6 +328,7 @@
     <Folder Include="app\lib\angular\" />
     <Folder Include="app\lib\angular\i18n\" />
     <Folder Include="app\lib\jquery\" />
+    <Folder Include="app\model\" />
     <Folder Include="app\partials\" />
     <Folder Include="tests\" />
   </ItemGroup>
