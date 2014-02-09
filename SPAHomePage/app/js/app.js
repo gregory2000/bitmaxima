@@ -4,46 +4,61 @@ var homePageApp = angular.module('homePageApp', ['ui.sortable', 'homePageService
 
 homePageApp.controller('navigationCtrl', ['$scope', 'HomePage',
     function ($scope, HomePage) { 
-        $scope.navSections = HomePage.NavSections();
-        $scope.menuState = 'locked';
-    }
-]).directive('shNavMenu', function () {
-    
-        //$scope.sortableOptions = {
-        //    stop: function (e, ui) {
-        //        //TODO sync to db
-        //        console.log($scope.navSections);
-        //    }
-        //};
+        /// TODO reconsider putting class names in the object here 
+        $scope.menuClasses = ['menu-category', 'menu-item'];
+        $scope.navSections = HomePage.getNavSections();
 
-    function link(scope, element, attrs) {
-        //element.attr('contenteditable', true);
-        //element.attr('ui-sortable', true);
-        
-        scope.$watch('menuState', function(newValue, oldValue) {
-            //TODO disallow new lines here, another directive?
-            //make it a growing input instead of content-editable, model does not get updated
-            switch(scope.menuState)
-            {
-                case "locked":
-                    console.log(scope.navSections);    
-                    element.children('.menu-item').attr('contenteditable', false);
-                    break;
-                case "edit":    
-                    element.children('.menu-item').attr('contenteditable', true);
-                    break;
-                case "sort":    
-                    element.children('.menu-item').attr('contenteditable', false);
-                    break;
-                default:
-                    console.log("oops!");
+        $scope.sortableOptions = {
+            stop: function (e, ui) {
+                HomePage.setNavSections($scope.navSections);
             }
-        });
+        };
+
+        $scope.makeSection = function() {
+            return {
+                "label": "+ Add a section",
+                "level": 0,
+                "link": "#"
+            };
+        };
+        
+        $scope.newSection = $scope.makeSection();
+    }
+]).directive('navMenu', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'admin-partials/nav-menu.html'
+        /// TODO templateUrl: 'partials/nav-menu.html' if view-only
+    };
+}).directive('editableMenuItem', ['$timeout', 'HomePage', 
+    function ($timeout, HomePage) {
+    function preLink(scope, element, attrs) {
+        scope.editable = false;
+
+        scope.newSectionBox = function() {
+            scope.newSection.label = "";
+            scope.editable = true;
+
+            // Angular has solved nothing if I have to do this hack
+            // http://stackoverflow.com/questions/14833326/how-to-set-focus-in-angularjs
+            $timeout(function() {
+                element.find('input[type=text]').focus();
+            });
+        };
+
+        scope.addNewSection = function() {
+            scope.navSections.push(scope.newSection);
+            HomePage.setNavSections(scope.navSections);
+            scope.newSection = scope.makeSection();
+            scope.editable = false;
+        }
     }
 
     return {
-        restrict: 'E',
-        link: { post: link },
-        templateUrl: 'partials/nav-menu.html'
+        restrict: 'A',
+        link: { pre: preLink },
+        templateUrl: 'admin-partials/editable-menu-item.html'
+        //TODO templateUrl: 'partials/nav-menu.html' if view-only
     };
-});
+}]);
+

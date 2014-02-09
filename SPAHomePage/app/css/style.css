@@ -6,3 +6,18 @@ body {
 #menu-editor-options {
     margin-top: 20px;
 }
+
+div.menu-indent-control {
+    cursor: pointer;
+    float: right;
+    padding:5px;
+}
+
+div.menu-indent-control i{
+    margin:1px;
+}
+
+div.menu-indent-control i:hover{
+	cursor: pointer;
+    background-color: #cfcfcf;
+}

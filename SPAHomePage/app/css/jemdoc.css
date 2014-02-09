@@ -366,3 +366,22 @@ table.imgtable, table.imgtable td {
     border: none;
     text-align: left;
 }
+
+/** Hacks **/
+
+/** Set 1: 
+    Menu-category links are special, they should not be visible as links 
+    Angular does not allow conditionally adding tags    
+**/
+div.menu-category a{
+    text-decoration: none !important;
+    color: black !important;
+    margin: 0px !important;
+}
+
+div.menu-category a:hover{
+    text-decoration: none !important;
+    color: black !important;
+    margin: 0px !important;
+    border: none !important;
+}

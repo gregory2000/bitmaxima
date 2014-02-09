@@ -3,6 +3,8 @@
 homePageServices.factory('HomePage', ['$resource',
 function ($resource) {
     return $resource('model/:dataset.json', {}, {
-        NavSections: { method: 'GET', params: { dataset: 'navSections' }, isArray: true }
+        getNavSections: { method: 'GET', params: { dataset: 'navSections' }, isArray: true },
+        /// TODO save to db
+        setNavSections: { method: 'POST', params: { dataset: 'navSections' }}
     });
 }]);

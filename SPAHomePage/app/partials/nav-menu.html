@@ -1,16 +1,5 @@
-﻿
-    <div ng-repeat="section in navSections" class="menu-item">
-        <!-- contenteditable="true" -->
-        <a href="#">{{section.label}}</a>
+﻿<div ng-model ="navSections">
+    <div ng-repeat="section in navSections" ng-class="menuClasses[section.level]">
+        <a ng-href="{{section.link}}">{{section.label}}</a>
     </div>
-
-    <div id="menu-editor-options">
-        <input type="radio" name="menu-options" value="locked" ng-model="menuState" />
-        <i class="icon-lock"> </i>
-
-        <input type="radio" name="menu-options" value="edit" ng-model="menuState" />
-        <i class="icon-edit"> </i>
-
-        <input type="radio" name="menu-options" value="sort" ng-model="menuState" />
-        <i class="icon-move"> </i>
-    </div>
+</div>

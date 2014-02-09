@@ -1,26 +1,83 @@
 ﻿[
-    {
-        "index": 0,
-        "label": "Bio"
-    },
-    {
-        "index": 1,
-        "label": "Publications"
-    },
-    {
-        "index": 2,
-        "label": "Course Work"
-    },
-    {
-        "index": 3,
-        "label": "Side projects"
-    },
-    {
-        "index": 4,
-        "label": "Lectures"
-    },
-    {
-        "index": 5,
-        "label": "Personal"
-    }
+  {
+    "label":"Stephen P. Boyd",
+    "level": 0
+  },
+  {
+    "label":"Home",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Teaching",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Biography",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Research",
+    "level": 0
+  },
+  {
+    "label":"Books",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Papers",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Software",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Students",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"Classes",
+    "level": 0
+  },
+  {
+    "label":"EE263",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"EE363",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"EE364a",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"EE364b",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"EE365",
+    "level": 1,
+    "link":"#"
+  },
+  {
+    "label":"MOOC",
+    "level": 0
+  },
+  {
+    "label":"CVX101",
+    "level": 1,
+    "link":"#"
+  }
 ]
