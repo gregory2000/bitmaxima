@@ -1,15 +1,15 @@
-﻿<a ng-hide="editable" href="#" ng-click="newSectionBox();">{{newSection.label}}</a>
-<div ng-show="editable">
-    <form ng-submit="addNewSection()">
-        <input class="input-block-level" type="text" ng-model="newSection.label" />
+﻿<a ng-hide="section.editable" ng-href="{{section.link}}" ng-click="inPlaceEdit($index)">{{section.label}}</a>
+<div ng-show="section.editable">
+    <form ng-submit="updateSection($index)">
+        <input class="input-block-level" type="text" ng-model="section.label" />
         <div class="btn-group">
             <input type="submit" class="btn btn-primary" value="Add"/>
             <input type="button" class="btn" value="Cancel" />
 
             <div class="menu-indent-control">
-                <i class="icon-chevron-left" ng-click="newSection.level = newSection.level - 1"> </i>
-                <i class="icon-chevron-right" ng-click="newSection.level = newSection.level + 1"> </i>
-                <!--i class="icon-chevron-link" ng-click="newSection.link"></i-->
+                <i class="icon-chevron-left" ng-click="section.level = section.level - 1"> </i>
+                <i class="icon-chevron-right" ng-click="section.level = section.level + 1"> </i>
+                <!--i class="icon-chevron-link" ng-click="section.link"></i-->
             </div>
         </div>
     </form>

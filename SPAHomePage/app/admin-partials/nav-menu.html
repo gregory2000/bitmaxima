@@ -2,16 +2,14 @@
      ng-model="navSections">
 
     <div ng-repeat="section in navSections"
-         ng-class="menuClasses[section.level]">
-
-        <a ng-href="{{section.link}}">
-            {{section.label}}
-        </a>
+         ng-class="menuClasses[section.level]"
+         editable-menu-item>
+        
     </div>
 
-    <div ng-model="newSection"
+    <!--div ng-model="newSection"
          ng-class="menuClasses[newSection.level]"
          editable-menu-item>
 
-    </div>
+    </div-->
 </div>

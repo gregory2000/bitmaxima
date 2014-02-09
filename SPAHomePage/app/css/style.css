@@ -21,3 +21,21 @@ div.menu-indent-control i:hover{
 	cursor: pointer;
     background-color: #cfcfcf;
 }
+
+div.menu-new {
+	color:black;
+	margin-top: 0.8em;
+	padding-top: 0.2em;
+	padding-bottom: 0.1em;
+	font-weight: lighter;
+    min-height: 1em;
+}
+
+div.menu-new a{
+	color:inherit !important;
+}
+
+div.menu-new a:hover{
+	color:inherit !important;
+	border-bottom: none !important;
+}
