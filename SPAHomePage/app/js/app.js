@@ -2,17 +2,18 @@
 'use strict';
 var homePageApp = angular.module('homePageApp', ['ui.sortable', 'ngResource']);
 
-homePageApp.factory('Navigation', ['$resource',
+homePageApp
+.factory('Navigation', ['$resource',
     function ($resource) {
-        return $resource('model/:user/navSections', {user: 'boyd'});
+        return $resource('model/:user/navSections');
     }
-]);
-
-homePageApp.controller('navigationCtrl', ['$scope', 'Navigation',
+])
+.controller('navigationCtrl', ['$scope', 'Navigation',
     function ($scope, Navigation) { 
         /// TODO reconsider putting class names in the object here 
         $scope.menuClasses = {0:'menu-category', 1:'menu-item', 999:'menu-new'};
         $scope.newSectionLevel = 999;
+        $scope.username = getParam('user');
         
         $scope.makeSection = function() {
             return {
@@ -35,11 +36,11 @@ homePageApp.controller('navigationCtrl', ['$scope', 'Navigation',
             $scope.navSections.push($scope.makeSection())
         };
 
-        var sections = Navigation.query(navQueryCallback);
+        var sections = Navigation.query({user: $scope.username}, navQueryCallback);
 
         $scope.sortableOptions = {
             stop: function (e, ui) {
-                Navigation.set($scope.navSections);
+                Navigation.save({user: $scope.username}, $scope.navSections);
             }
         };
         
@@ -69,11 +70,21 @@ homePageApp.controller('navigationCtrl', ['$scope', 'Navigation',
             });
         };
 
-        scope.updateSection = function(index) {
-            console.log(scope.navSections);
+        scope.updateSection = function(index, event) {
+            event.preventDefault();
             scope.navSections[index].editable = false;
-            Navigation.save(scope.navSections);
-            scope.navSections.push(scope.makeSection());
+            Navigation.save({user: scope.username}, scope.navSections);
+            if(scope.navSections.last().level !== scope.newSectionLevel)
+                scope.navSections.push(scope.makeSection());
+            return false;
+        }
+
+        scope.deleteSection = function(index) {
+            console.log(scope.username)
+            scope.navSections.remove(index);
+            Navigation.save({user: scope.username}, scope.navSections);
+            if(scope.navSections.last().level !== scope.newSectionLevel)
+                scope.navSections.push(scope.makeSection());
         }
     }
 
@@ -83,5 +94,5 @@ homePageApp.controller('navigationCtrl', ['$scope', 'Navigation',
         templateUrl: 'admin-partials/editable-menu-item.html'
         //TODO templateUrl: 'partials/nav-menu.html' if view-only
     };
-}]);
+}])
 

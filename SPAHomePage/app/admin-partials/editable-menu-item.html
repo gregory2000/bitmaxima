@@ -1,10 +1,10 @@
 ﻿<a ng-hide="section.editable" ng-href="{{section.link}}" ng-click="inPlaceEdit($index)">{{section.label}}</a>
 <div ng-show="section.editable">
-    <form ng-submit="updateSection($index)">
+    <form ng-submit="updateSection($index, $event)">
         <input class="input-block-level" type="text" ng-model="section.label" />
         <div class="btn-group">
-            <input type="submit" class="btn btn-primary" value="Add"/>
-            <input type="button" class="btn" value="Cancel" />
+            <input type="submit" class="btn btn-primary" value="Save"/>
+            <input type="button" class="btn" value="Delete" ng-click="deleteSection($index)"/>
 
             <div class="menu-indent-control">
                 <i class="icon-chevron-left" ng-click="section.level = section.level - 1"> </i>
@@ -14,3 +14,4 @@
         </div>
     </form>
 </div>
+
