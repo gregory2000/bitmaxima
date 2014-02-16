@@ -29,7 +29,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app\js\services.js" />
+    <Compile Include="app\js\controllers.js" />
+    <Compile Include="app\js\lib.js" />
     <Compile Include="server.js" />
     <Compile Include="app\js\app.js" />
     <Compile Include="app\lib\angular\angular-animate.js" />
@@ -297,10 +298,14 @@
     <Compile Include="app\lib\angular\i18n\angular-locale_zu.js" />
     <Compile Include="app\lib\jquery\jquery-1.10.2.js" />
     <Compile Include="app\lib\jquery\jquery-1.10.2.min.js" />
+    <Content Include="app\admin-partials\editable-bio-page.html" />
     <Content Include="app\admin-partials\editable-menu-item.html" />
+    <Content Include="app\admin-partials\nav-menu.html" />
     <Content Include="app\css\bootstrap.css" />
     <Content Include="app\css\jemdoc.css" />
     <Content Include="app\css\style.css" />
+    <Content Include="app\img\glyphicons-halflings-white.png" />
+    <Content Include="app\img\glyphicons-halflings.png" />
     <Content Include="app\index.html" />
     <Content Include="app\lib\angular\angular-animate.min.js.map" />
     <Content Include="app\lib\angular\angular-cookies.min.js.map" />
@@ -315,8 +320,10 @@
     <Content Include="app\lib\angular\version.json" />
     <Content Include="app\lib\angular\version.txt" />
     <Content Include="app\lib\jquery\jquery-1.10.2.min.map" />
-    <Content Include="app\model\navSections.json" />
-    <Content Include="app\admin-partials\nav-menu.html" />
+    <Content Include="app\model\nav\boyd.json" />
+    <Content Include="app\model\nav\sanjeevs.json" />
+    <Content Include="app\partials\build-user.html" />
+    <Content Include="app\partials\show-user.html" />
     <Content Include="app\partials\nav-menu.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -332,6 +339,7 @@
     <Folder Include="app\lib\jquery\" />
     <Folder Include="app\model\" />
     <Folder Include="app\admin-partials\" />
+    <Folder Include="app\model\nav\" />
     <Folder Include="app\partials\" />
     <Folder Include="tests\" />
   </ItemGroup>
