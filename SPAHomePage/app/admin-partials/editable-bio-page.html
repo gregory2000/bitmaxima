@@ -1,0 +1,29 @@
+﻿<form ng-submit="githubMe()" ng-hide="githubInput">
+    <div class="input-append">
+        <input ng-model="githubuser" placeholder="enter your github username here .." type="text" />
+        <button class="btn btn-primary" type="button">Go!</button>
+    </div>
+</form>
+
+<div ng-show="githubInput">
+    <div class="span3">
+        <img ng-src="http://www.gravatar.com/avatar/{{user.gravatarImageId}}?s=200"
+             class="img-polaroid">
+    </div>
+    <div class="span5" contenteditable="false">
+        <ul class="unstyled">
+            <li>{{user.fullName}}</li>
+            <li><a ng-href="mailto:{{user.email}}">{{user.email}}</a></li>
+            <li>{{user.location}}</li>
+            <li>{{user.company}}</li>
+        </ul>
+        <div>
+            <p>
+                {{user.bio}}
+            </p>
+        </div>
+    </div>
+    <div class="span10">
+
+    </div>
+</div>

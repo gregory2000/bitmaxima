@@ -39,3 +39,15 @@ div.menu-new a:hover{
 	color:inherit !important;
 	border-bottom: none !important;
 }
+
+
+/* Copy from jemdoc css for h1 */
+input.h1 {
+    font-family: inherit;
+    color: #527bbd;
+    line-height: 1.0;
+    padding-top: 0.5em;
+    border: none;
+    font-size: 165%;
+    margin-top: 10px;
+}

@@ -1,4 +1,4 @@
-﻿<a ng-hide="section.editable" ng-href="{{section.link}}" ng-click="inPlaceEdit($index)">{{section.label}}</a>
+﻿<a ng-hide="section.editable" ng-href="{{section.link}}" ng-click="inPlaceEdit($index, $event)">{{section.label}}</a>
 <div ng-show="section.editable">
     <form ng-submit="updateSection($index, $event)">
         <input class="input-block-level" type="text" ng-model="section.label" />
