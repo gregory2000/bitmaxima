@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "express": "3.4.4",
-    "forever": "0.10.11"
+    "forever": "0.10.11",
     "github": "0.1.13",
     "async": "~0.2.10"
   }
