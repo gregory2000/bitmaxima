@@ -1,11 +1,8 @@
 ﻿# SPAHomePage
 
-Navigation is now fully completed. You can edit, delete and re-order navigation entries.
+Navigation is now fully completed. You can edit, delete and re-order navigation entries. There is also a basic github api pull. You can try these out here.
 
-You can experiment with the navigation using these prepopulated urls. 
+http://144.76.42.247:8000/#/boyd
+http://144.76.42.247:8000/#/build
 
-http://localhost:8000/?user=sanjeevs
-http://localhost:8000/?user=boyd
-
-Or you can type in your own name as a user parameter to start from scratch and see how it goes.
-
+Type in the github handle of your favorite coder.
