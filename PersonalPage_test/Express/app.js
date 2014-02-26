@@ -7,9 +7,10 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var db = require('./model/db');
+var mongoose = require('./model/mongoose');
 var submit_page = require('./routes/submit_page');
 var submit_telemetry = require('./routes/submit_telemetry');
+var submit_tech = require('./routes/submit_tech');
 var page = require('./routes/page');
 var pdf = require('./routes/pdf');
 var ng_page = require('./routes/ng_page');
@@ -36,6 +37,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.post('/submit_page', submit_page.submit); //set up file directory here
 app.post('/submit_telemetry', submit_telemetry.submitTelemetry); //set up file directory here
+//app.post('/submit_tech', submit_tech.submitTech);
 app.get('/pages', page.list);
 app.get('/pdfs', pdf.list);
 app.get('/api_pages', ng_page.list);

@@ -17,7 +17,7 @@ angular.module('page', ['ngRoute', 'ngSanitize', 'summernote'])
     .controller('PageCtrl', function($scope, $timeout, $http){
 
 
-        var futureResponse = $http.get('http://localhost:4000/get_data');
+        var futureResponse = $http.get('http://localhost:5000/get_data');
 
         futureResponse.success(function (data, status, headers, config) {
             //alert(data[0].text);
@@ -32,6 +32,7 @@ angular.module('page', ['ngRoute', 'ngSanitize', 'summernote'])
         $scope.options = {
             height: 800,
             focus: true,
+            hide: true,
             codemirror: {
                 theme: 'monokai'
             }
@@ -66,14 +67,14 @@ angular.module('page', ['ngRoute', 'ngSanitize', 'summernote'])
             //$scope.page0_div_visible = true;
             //alert('blur: '+ $scope);
             $http.post(
-                'http://localhost:4000/save_data',
+                'http://localhost:5000/save_data',
                 {"pageId": 0, "itemId": 0, "text": $scope.page0_text}
             )
                 .then(function(response) {
-                    //alert('success');
+                    //alert('success: ' + response);
                 },
                 function(response) { // optional
-                    //alert(response);
+                    //alert('fail');
                 });
 
         }
@@ -96,7 +97,7 @@ angular.module('page', ['ngRoute', 'ngSanitize', 'summernote'])
             $scope.div_visible = true;
             //alert($scope.text);
             $http.post(
-                'http://localhost:4000/save_data',
+                'http://localhost:5000/save_data',
                 {"pageId": 1, "itemId": 0, "text": $scope.page1_text}
             )
                 .then(function(response) {
