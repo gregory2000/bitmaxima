@@ -15,7 +15,8 @@ chrome.runtime.onMessage.addListener(function(msg, sender, response) {
          *  should be equivalent to jquery's `$(...)`)*/
         var domInfo = {
             html: document.body.innerText,
-            url: document.URL
+            url: document.URL,
+            title: document.title
         };
         /* Directly respond to the sender (popup),
          * through the specified callback */

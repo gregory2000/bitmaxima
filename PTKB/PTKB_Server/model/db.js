@@ -24,7 +24,8 @@ db.open(function(err, db) {
 });
 
 exports.page_save = function(req, res){
-    var document = {url: req.body.url, time: req.body.time, html: req.body.html};
+    var document = {url: req.body.url, title: req.body.title, time: req.body.time, html: req.body.html};
+    console.log(document);
     db.collection('pages_saved_log', {}, function(err, collection){
         collection.insert(
             document,
@@ -44,12 +45,13 @@ exports.page_save = function(req, res){
 
     db.collection('pages_saved_dedup', {}, function(err, collection){
         var Url = req.body.url;
+        var Title = req.body.title;
         var Time = req.body.time;
         var Html = req.body.html;
 
         collection.update(
             {url: Url},
-            {url: Url, time: Time, html: Html},
+            {url: Url, title: Title, time: Time, html: Html},
             {upsert: true},
             function(err, result) {
                 if (err) {
@@ -64,8 +66,11 @@ exports.page_save = function(req, res){
 
     });
 
-    var doc = [{"id": req.body.url, "price": req.body.time, "name": req.body.html}];
+    var doc = [{"id": req.body.url, "title": req.body.title, "time": req.body.time, "content": req.body.html}];
     var doc_str = JSON.stringify(doc);
+
+
+    console.log(doc_str);
 
     var options = {
         url: 'http://localhost:8983/solr/update/json?commit=true',
@@ -85,7 +90,7 @@ exports.page_save = function(req, res){
     request(options, callback);
 
 
-
+//http://www.bitmaxima.com/gfasyutekjbfsdfsdkfafkaehfa
 
 
     /*
