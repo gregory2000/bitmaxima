@@ -6,8 +6,8 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.8",
-    "hjs": "*",
+    "express": "3.4.0",
+    "ejs": "*",
     "mongodb": "*",
     "request": "*"
   }

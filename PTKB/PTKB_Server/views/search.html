@@ -1,0 +1,24 @@
+
+
+
+<h2>Search Results</h2>
+
+<div class="results">
+    {{#each items}}
+        <div ng-controller="PagesCtrl" class="pagesBlock">
+            <div class="title">
+                <a class="item-link" href="{{doc.id}}">{{doc.title}}</a>
+                <a ng-mouseover="show()" ng-mouseout="hide()" href="{{imgPath}}" target="_blank">
+                    <img class="icon" src="/images/preview3_30.jpeg">
+                </a>
+            </div>
+
+            <div class="item-url-display">{{doc.id}}</div>
+            <div class="snippet">
+                {{{highlight}}}
+            </div>
+            <br/>
+        </div>
+    {{/each}}
+
+</div>

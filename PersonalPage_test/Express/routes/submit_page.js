@@ -1,9 +1,9 @@
 /**
  * Created by g42gregory on 9/16/13.
  */
-var pagedata = require('../model/pages');
-var pdfdata = require('../model/pdfs');
-var fs = require('fs');
+//var pagedata = require('../model/pages');
+//var pdfdata = require('../model/pdfs');
+//var fs = require('fs');
 
 /*
  * POST web site URL.
@@ -11,8 +11,8 @@ var fs = require('fs');
 
 exports.submit = function(req, res){
     //add .jpg extension to the file
-    //console.log(req);
-
+    console.log(req);
+    /*
     var oldPath = req.files.image.path;
     var newPath = oldPath + '.jpg';
     fs.rename(oldPath, newPath);
@@ -43,9 +43,10 @@ exports.submit = function(req, res){
         pdfPath: pdfRelativePath
     };
 
-    console.log(page);
+    //console.log(page);
 
     pagedata.savePage(page, function(){});
+    */
     res.send("saved page!");
 };
 

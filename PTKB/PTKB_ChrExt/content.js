@@ -16,6 +16,8 @@ $(document).ready(function(){
         }
     }
 
+    var hasCode = $('pre').length != 0 || $('code').length != 0;
+
     chrome.runtime.sendMessage({
         from: "content",
         subject: "showPageAction"
@@ -32,7 +34,8 @@ $(document).ready(function(){
             var domInfo = {
                 html: document.body.innerText,
                 url: document.URL,
-                title: document.title
+                title: document.title,
+                hasCode: hasCode
             };
             /* Directly respond to the sender (popup),
              * through the specified callback */
@@ -54,7 +57,6 @@ $(document).ready(function(){
             $.ajax({
                 data: JSON.stringify(scrollPoint)
             });
-            //alert("scrolled!");
         });
 
         $(window).mousemove(function(){
@@ -63,10 +65,8 @@ $(document).ready(function(){
             $.ajax({
                 data: JSON.stringify(movePoint)
             });
-            //alert("moved!");
         });
     }
-
 });
 
 

@@ -1,8 +1,123 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding-top: 50px;
+    overflow: hidden;
+}
+div.preview {
+
+    height: 75%;
+    width: 75%;
+    position: fixed;
+    visibility: visible;
+    left: 25%;
+    top: 25%;
+    border: 1px solid #000000;
+    border-radius: 0px 0px 0px 0px;
+    box-shadow: 4px 6px 8px rgba(0,0,0,.75);
 }
 
-a {
-  color: #00B7FF;
+div.preview > img {
+    max-height: 100%;
+    max-width: 100%;
+    left: 0%
+}
+.results {
+    width: 40%;
+}
+.snippet {
+    text-align:justify;
+
+}
+.item-url-display {
+    color:#006400;
+    font-size:100%;
+
+}
+a.item-link {
+    color:#1122CC;
+    font-size:125%;
+}
+.title {
+    border: 1px;
+
+}
+img.icon {
+    margin-left: 10px;
+}
+div.preview {
+
+    height: 75%;
+    width: 75%;
+    position: fixed;
+    visibility: visible;
+    left: 25%;
+    top: 25%;
+    border: 1px solid #000000;
+    border-radius: 0px 0px 0px 0px;
+    box-shadow: 4px 6px 8px rgba(0,0,0,.75);
+}
+
+div.preview > img {
+    max-height: 100%;
+    max-width: 100%;
+    left: 0%
+}
+#wrapper {
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    display: inline-block;
+}
+#main-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 50px 0 0px 0;
+}
+#main {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+#sidebar-wrapper {
+    height: 100%;
+    padding: 50px 0 0px 0;
+    position: fixed;
+    border-right: 1px solid gray;
+}
+#sidebar {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+#sidebar .list-group-item {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+@media (max-width: 992px) {
+    body {
+        padding-top: 0px;
+    }
+}
+@media (min-width: 992px) {
+    #main-wrapper {
+        float:right;
+    }
+}
+@media (max-width: 992px) {
+    #main-wrapper {
+        padding-top: 0px;
+    }
+}
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        position: static;
+        height:auto;
+        max-height: 300px;
+        border-right:0;
+    }
 }
