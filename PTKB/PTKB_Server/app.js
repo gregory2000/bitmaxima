@@ -5,8 +5,8 @@
 
 var express = require('express');
 var routes = require('./routes');
-var hbs = require('hbs');
-//var ejs = require('ejs');
+//var hbs = require('hbs');
+var ejs = require('ejs');
 var user = require('./routes/user');
 var search = require('./routes/search');
 var submit_preview = require('./routes/submit_preview');
@@ -21,7 +21,7 @@ app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'html');
-app.engine('html', hbs.__express);
+app.engine('html', ejs.__express);
 
 
 app.use(express.favicon());
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
@@ -48,5 +48,5 @@ app.post('/submit_telemetry', db.telemetry);
 app.post('/submit_preview', submit_preview.submit);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });

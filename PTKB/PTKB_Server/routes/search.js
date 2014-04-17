@@ -3,7 +3,7 @@
  */
 var request = require('request');
 var db = require('../model/db');
-
+var async = require("async");
 
 
 exports.results = function(req, res){
@@ -33,12 +33,9 @@ exports.results = function(req, res){
         var docs = response.response.docs;
         var highlighting = response.highlighting;
 
-
         //construct pages JSON object
         var items = new Array();
-        var docsLength = docs.length;
-        for (var i = 0; i < docsLength; i++) {
-            var doc = docs[i];
+        async.each(docs, function(doc, callback) {
             var id = doc.id;
             var highlight = highlighting[id].content;
             (function(){
@@ -47,15 +44,23 @@ exports.results = function(req, res){
                 var temp_highlight = highlight;
                 db.img_path(temp_id, function(path){
                     items.push({'doc': temp_doc, 'highlight': temp_highlight, 'imgPath': path});
+                    //console.log(items.length);
+                    callback();
                 });
             })();
 
-        }
-
-        return res.render('search', {items: items});
-
+        }, function(err){
+            // if any of the file processing produced an error, err would equal that error
+            if( err ) {
+                // One of the iterations produced an error.
+                // All processing will now stop.
+                //console.log('A file failed to process');
+            } else {
+                //console.log('All files have been processed successfully');
+                //console.log(items.length);
+                return res.render('search', {items: items});
+            }
+        });
     }
     request(options, solrCallback);
-
-
 };

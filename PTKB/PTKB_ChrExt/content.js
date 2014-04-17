@@ -43,12 +43,14 @@ $(document).ready(function(){
         }
     });
 
+    /*
     $.ajaxSetup({
         url: 'http://localhost:4000/submit_telemetry',
         type: 'POST',
         contentType:'application/json',
         dataType: 'json'
     });
+
 
     if(save){
         $(window).scroll(function(){
@@ -67,6 +69,7 @@ $(document).ready(function(){
             });
         });
     }
+    */
 });
 
 

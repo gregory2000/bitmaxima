@@ -7,9 +7,9 @@ div.preview {
     height: 75%;
     width: 75%;
     position: fixed;
-    visibility: visible;
-    left: 25%;
-    top: 25%;
+    display: none;
+    left: 12.5%;
+    top: 12.5%;
     border: 1px solid #000000;
     border-radius: 0px 0px 0px 0px;
     box-shadow: 4px 6px 8px rgba(0,0,0,.75);
@@ -17,11 +17,10 @@ div.preview {
 
 div.preview > img {
     max-height: 100%;
-    max-width: 100%;
-    left: 0%
+    left: 0%;
 }
 .results {
-    width: 40%;
+    width: 50%;
 }
 .snippet {
     text-align:justify;
@@ -41,25 +40,10 @@ a.item-link {
 
 }
 img.icon {
-    margin-left: 10px;
+    margin-right: 10px;
 }
-div.preview {
+#previewPane {
 
-    height: 75%;
-    width: 75%;
-    position: fixed;
-    visibility: visible;
-    left: 25%;
-    top: 25%;
-    border: 1px solid #000000;
-    border-radius: 0px 0px 0px 0px;
-    box-shadow: 4px 6px 8px rgba(0,0,0,.75);
-}
-
-div.preview > img {
-    max-height: 100%;
-    max-width: 100%;
-    left: 0%
 }
 #wrapper {
     min-height: 100%;

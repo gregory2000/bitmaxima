@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Bit Maxima</title>
+    <!--<meta name="generator" content="Bootply" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/lib/bootstrap24/css/bootstrap.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type='text/javascript' src="/lib/jquery-2.1.0.js"></script>
+    <!-- Bit Maxima CSS code -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+    <!-- CSS code from Bootply.com editor -->
+    <style type="text/css">
+
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('#preview-pane').hide();
+            var iPos = $('#preview-icon').position();
+            $('#preview-icon').mouseenter(function(){
+                $('#preview-pane').show();
+
+                //$('#preview-icon').focus();
+            });
+            $('#preview-pane').mousemove(function(e){
+                if(e.pageX < (iPos.left -5)
+                        || e.pageY < (iPos.top - 10)
+                        || e.pageX > (iPos.left + 30)
+                        || e.pageY > (iPos.top + 25)){
+                            $('#preview-pane').hide();
+                }
+            });
+
+
+
+            /*
+            $('#preview-pane').bind('mousemove', function(e){
+                if(e.pageY < (iconPos.top - 10)) {
+                    $('#preview-pane').hide();
+                }
+            });
+            */
+
+
+
+            /*
+            $('#preview-icon').mouseleave(function(){
+                $('#preview-pane').hide();
+            });
+            */
+
+            /*
+            $('#preview-pane').bind('mousemove mousedown mouseup', function(e){
+                $('.status').html(e.type + ' ' + e.pageX + ' ' + e.pageY);
+                //$("#preview-icon").trigger(e);
+            });
+
+
+            $('#preview-icon').bind('mousemove mousedown mouseup', function(e){
+                //$('.status').html(e.type + ' ' + e.pageX + ' ' + e.pageY);
+            });
+
+            var pos = $('#preview-icon').position();
+            alert("left: "+ pos.left + " top: " + pos.top);
+            */
+
+        });
+
+    </script>
+    <script>
+        /*
+        var PagesCtrl = function ($scope){
+
+            $scope.showImg = false;
+            //$scope.showImg = false;
+            $scope.imgSrc = null;
+
+            $scope.show = function (url){
+                $scope.showImg = true;
+                $scope.imgSrc = "http://localhost:4000" + url;
+
+                setTimeout(function(){angular.element("#sidebar").focus();},30);
+
+            };
+
+            $scope.hide = function (){
+                //alert("mouse out!");
+                //setTimeout(function(){$scope.showImg = false;},500);
+                $scope.showImg = false;
+            };
+        }
+        */
+    </script>
+</head>
+
+<!-- HTML code from Bootply.com editor -->
+<body>
+<br/><br/><br/><br/><br/>
+
+<div class="title">
+    <a class="item-link" href="/docs/28432-fnh2wi.jpg">This is the the the the the the the the title</a>
+    <a id="preview-icon" ng-mouseenter="show('/docs/28432-fnh2wi.jpg')" ng-mouseout="hide()" href="/docs/28432-fnh2wi.jpg" target="_blank">
+        <img class="icon" src="/images/preview3_30.jpeg">
+    </a>
+
+</div>
+
+<div id="preview-pane" class="preview">
+    <img id ="previewImg" class="image" src="http://localhost:4000/docs/28432-fnh2wi.jpg">
+</div>
+
+<div class="status"></div>
+
+
+
+<script type='text/javascript' src="/lib/bootstrap24/js/bootstrap.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+
+
+</body>
+</html>
+
+

@@ -40,6 +40,8 @@ function dataURItoBlob(dataURI) {
 }
 
 function uploadFile(blobFile, url) {
+    //alert('got here');
+
     var fd = new FormData();
 
     fd.append("image", blobFile);
@@ -83,9 +85,12 @@ window.addEventListener("load", windowLoaded, false);
 
 function windowLoaded() {
 
+
+
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 
         chrome.tabs.captureVisibleTab(null, function(img) {
+
             var blob = dataURItoBlob(img);
             var tabUrl = tabs[0].url;
 
@@ -95,6 +100,7 @@ function windowLoaded() {
     });
 };
 
+/*
 function uploadFile(blobFile, url) {
     var fd = new FormData();
     fd.append("image", blobFile);
@@ -123,7 +129,7 @@ function dataURItoBlob(dataURI) {
     }
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
 }
-
+*/
 
 
 

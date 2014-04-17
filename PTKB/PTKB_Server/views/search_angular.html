@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Bit Maxima</title>
+    <!--<meta name="generator" content="Bootply" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/lib/bootstrap24/css/bootstrap.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Bit Maxima CSS code -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+    <!-- CSS code from Bootply.com editor -->
+    <style type="text/css">
+
+    </style>
+    <script>
+        var PagesCtrl = function ($scope, $element){
+
+            $scope.showImg = false;
+            //$scope.showImg = false;
+            $scope.imgSrc = null;
+
+            $scope.show = function (url){
+                $scope.showImg = true;
+                $scope.imgSrc = "http://localhost:4000" + url;
+
+                setTimeout(function(){angular.element("#sidebar").focus();},30);
+
+
+            };
+
+            $scope.hide = function (){
+                //alert("mouse out!");
+                //setTimeout(function(){$scope.showImg = false;},500);
+                $scope.showImg = false;
+            };
+        }
+    </script>
+</head>
+
+<!-- HTML code from Bootply.com editor -->
+<body ng-app >
+<%- include top-nav.html %>
+<div id="wrapper" ng-controller="PagesCtrl">
+    <%- include left-sidebar.html %>
+    <div id="main-wrapper" class="col-md-21 pull-right">
+        <div id="main">
+            <h2>Search Results</h2>
+            <div class="results">
+                <% items.forEach(function(item){ %>
+                    <div class="pagesBlock">
+                        <div class="title">
+                            <a class="item-link" href="<%= item.doc.id %>"><%= item.doc.title %></a>
+                            <a ng-mouseenter="show('<%= item.imgPath %>')" ng-mouseout="hide()" href="<%= item.imgPath %>" target="_blank">
+                                <img class="icon" src="/images/preview3_30.jpeg">
+                            </a>
+
+                        </div>
+
+                        <div class="item-url-display"><%= item.doc.id %></div>
+                        <div class="snippet">
+                            <%- item.highlight %>
+                        </div>
+                        <br/>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <div ng-show="showImg" ng-mousemove="hide()" class="preview">
+            <img id ="previewImg" class="image" ng-src="{{imgSrc}}">
+        </div>
+
+    </div>
+
+
+</div><!-- /.container -->
+
+<script type='text/javascript' src="/lib/jquery-2.1.0.js"></script>
+<script type='text/javascript' src="/lib/bootstrap24/js/bootstrap.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+
+
+</body>
+</html>
+
+

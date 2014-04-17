@@ -59,7 +59,7 @@ exports.img_path = function(url, callback){
 
 
 exports.preview_save = function(preview, callback){
-    //console.log(preview);
+    console.log(preview);
     previews.update(
         {url: preview.url},
         {url: preview.url, imgPath: preview.imgPath},
