@@ -1,0 +1,11 @@
+/**
+ * Created by g42gregory on 2/24/14.
+ */
+chrome.runtime.onMessage.addListener(function(msg, sender) {
+    /* First, validate the message's structure */
+    if (msg.from && (msg.from === "content")
+        && msg.subject && (msg.subject = "showPageAction")) {
+        /* Enable the page-action for the requesting tab */
+        chrome.pageAction.show(sender.tab.id);
+    }
+});

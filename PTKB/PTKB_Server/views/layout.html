@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+        <title>Bit Maxima</title>
+        <!--<meta name="generator" content="Bootply" />-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="/lib/bootstrap24/css/bootstrap.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Bit Maxima CSS code -->
+        <link href="/stylesheets/style.css" rel="stylesheet">
+
+        <!-- CSS code from Bootply.com editor -->
+        <style type="text/css">
+
+        </style>
+        <script>
+            var PagesCtrl = function ($scope){
+
+                $scope.showImg = false;
+                $scope.imgSrc = null;
+
+                $scope.show = function (){
+                    //alert("mouse over!");
+                    $scope.showImg = true;
+                    $scope.imgSrc = "http://localhost:4000" + "/docs/28432-fnh2wi.jpg";
+                }
+
+                $scope.hide = function (){
+                    //alert("mouse out!");
+                    $scope.showImg = false;
+                }
+            }
+        </script>
+    </head>
+    
+    <!-- HTML code from Bootply.com editor -->
+    
+<body ng-app>
+        
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	
+
+        <div class="navbar-header col-md-3 col-lg-3">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		    </button>
+
+            <a class="navbar-brand" rel="home" href="/">Bit Maxima</a>
+
+	    </div>
+
+	    <div class="collapse navbar-collapse">
+
+            <div class="col-sm-12 col-md-12 pull-left">
+
+                <form class="navbar-form" role="search" method="GET" action="/search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-sm-6 col-md-6 pull-right">
+		    <ul class="nav navbar-nav">
+			    <li><a href="#">Link</a></li>
+			    <li><a href="#">Link</a></li>
+			    <li><a href="#">Link</a></li>
+			    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+		    </ul>
+            </div>
+
+
+
+        <!--<button type="button" class="btn btn-default navbar-btn">Button</button>-->
+
+
+		
+	</div>
+</div>
+
+
+<div id="wrapper">
+    <div id="sidebar-wrapper" class="col-md-3">
+        <div id="sidebar">
+            <ul class="nav list-group">
+                <li>
+                    <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 1</a>
+                </li>
+                <li>
+                    <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 2</a>
+                </li>
+                <li>
+                    <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main-wrapper" class="col-md-21 pull-right">
+        <div id="main">
+
+            {{{body}}}
+
+        </div>
+        <div ng-show="{{$scope.showImg}}" class="preview">
+            <img id ="previewImg" class="image" ng-src="http://localhost:4000/docs/28432-fnh2wi.jpg">
+        </div>
+    </div>
+
+
+</div><!-- /.container -->
+
+
+
+
+
+
+
+
+        <script type='text/javascript' src="/lib/jquery-2.1.0.js"></script>
+        <script type='text/javascript' src="/lib/bootstrap24/js/bootstrap.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+
+        <!--
+        <script type='text/javascript'>
+        $(document).ready(function() {
+
+        });
+        </script>
+        -->
+</body>
+</html>

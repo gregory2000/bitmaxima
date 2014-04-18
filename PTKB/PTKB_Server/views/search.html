@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Bit Maxima</title>
+    <!--<meta name="generator" content="Bootply" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/lib/bootstrap24/css/bootstrap.css" rel="stylesheet">
+
+    <script type='text/javascript' src="/lib/jquery-2.1.0.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Bit Maxima CSS code -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+    <!-- CSS code from Bootply.com editor -->
+    <style type="text/css">
+
+    </style>
+    <script>
+        $(document).ready(function(){
+            var iPos;
+            $(".previewIcon").mouseenter(function(){
+                var href = $(this).attr('href');
+                iPos = $(this).offset();
+                //alert('left:' + iPos.left + ' top: ' + iPos.top);
+                $('#previewImg').attr('src', href);
+                $('#previewPane').show();
+
+            });
+            $('#previewPane').mousemove(function(e){
+                if(e.pageX < (iPos.left -5)
+                        || e.pageY < (iPos.top - 10)
+                        || e.pageX > (iPos.left + 35)
+                        || e.pageY > (iPos.top + 25)){
+                    $('#previewPane').hide();
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<!-- HTML code from Bootply.com editor -->
+<body>
+<%- include top-nav.html %>
+<div id="wrapper">
+    <%- include left-sidebar.html %>
+    <div id="main-wrapper" class="col-md-21 pull-right">
+        <div id="main">
+            <h2>Search Results</h2>
+            <div class="results">
+                <% for(var i=0; i<items.length; i++){ %>
+                <div class="pagesBlock">
+                    <div class="title">
+                        <a class="item-link" href="<%= items[i].doc.id %>"><%= items[i].doc.title %></a>
+                        <a class="previewIcon" id="<%= i %>" href="<%= items[i].imgPath %>" target="_blank">
+                            <img class="icon" src="/images/preview3_30.jpeg">
+                        </a>
+
+                    </div>
+
+                    <div class="item-url-display"><%= items[i].doc.id %></div>
+                    <div class="snippet">
+                        <%- items[i].highlight %>
+                    </div>
+                    <br/>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="preview" id="previewPane">
+            <img class="image" id ="previewImg"  src="">
+        </div>
+
+    </div>
+
+
+</div><!-- /.container -->
+
+
+<script type='text/javascript' src="/lib/bootstrap24/js/bootstrap.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+
+
+</body>
+</html>
+
+
