@@ -8,6 +8,7 @@
     <link href="/lib/bootstrap24/css/bootstrap.css" rel="stylesheet">
 
     <script type='text/javascript' src="/lib/jquery-2.1.0.js"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=sunburst"></script>
 
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,6 +16,7 @@
 
     <!-- Bit Maxima CSS code -->
     <link href="/stylesheets/style.css" rel="stylesheet">
+    <!--<link href="/stylesheets/prism.css" rel="stylesheet">-->
 
     <!-- CSS code from Bootply.com editor -->
     <style type="text/css">
@@ -22,7 +24,9 @@
     </style>
     <script>
         $(document).ready(function(){
-            var iPos;
+            var iPos,
+                codeVisible = false;
+
             $(".previewIcon").mouseenter(function(){
                 var href = $(this).attr('href');
                 iPos = $(this).offset();
@@ -39,6 +43,21 @@
                     $('#previewPane').hide();
                 }
             });
+            $("#codeDemo").mouseenter(function(){
+                $('.code').show();
+            }).mouseleave(function(){
+                if(!codeVisible) {
+                    $('.code').hide();
+                }
+            }).click(function(){
+                codeVisible = true;
+            });
+            $('.code').mouseleave(function(){
+                $('.code').hide();
+                codeVisible = false;
+            });
+
+
         });
 
     </script>
@@ -57,9 +76,12 @@
                 <div class="pagesBlock">
                     <div class="title">
                         <a class="item-link" href="<%= items[i].doc.id %>"><%= items[i].doc.title %></a>
-                        <a class="previewIcon" id="<%= i %>" href="<%= items[i].imgPath %>" target="_blank">
-                            <img class="icon" src="/images/preview3_30.jpeg">
-                        </a>
+
+                        <%if (items[i].imgPath != '#') { %>
+                            <a class="previewIcon" id="<%= i %>" href="<%= items[i].imgPath %>" target="_blank">
+                                <img class="icon" src="/images/preview3_30.jpeg">
+                            </a>
+                        <% } %>
 
                     </div>
 
@@ -67,9 +89,20 @@
                     <div class="snippet">
                         <%- items[i].highlight %>
                     </div>
+                    <%if (items[i].doc.id == 'http://stackoverflow.com/questions/8037070/whats-the-fastest-way-to-read-a-text-file-line-by-line') { %>
+                        <div class="codePreview" id="codeDemo">
+                            <a>
+                                code
+                            </a>
+                        </div>
+                    <% } %>
+
                     <br/>
                 </div>
                 <% } %>
+            </div>
+            <div class="code">
+                <%- include code.html %>
             </div>
         </div>
 
@@ -84,6 +117,7 @@
 
 
 <script type='text/javascript' src="/lib/bootstrap24/js/bootstrap.js"></script>
+<!--<script type='text/javascript' src="/lib/prism.js"></script>-->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
 
 

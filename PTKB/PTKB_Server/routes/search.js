@@ -18,7 +18,7 @@ exports.results = function(req, res){
             "indent": "true",
             "q": req.query.q,
             "start": 0,
-            "rows": 100,
+            "rows": 10,
             "hl.fl": "content",
             "wt": "json",
             "hl": "true",

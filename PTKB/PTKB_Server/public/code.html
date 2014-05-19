@@ -1,0 +1,105 @@
+<p>This is what I'm trying so far:</p>
+
+<pre><code>var filestream = new FileStream(textFilePath,
+    FileMode.Open,
+    FileAccess.Read,
+    FileShare.ReadWrite);
+    var file = new StreamReader(filestream, Encoding.UTF8, true, 128);
+
+    while ((lineOfText = file.ReadLine()) != null)
+    {
+    //do something with the lineOfText
+    }
+</code></pre>
+
+<p>This is basically your method. For some reason you set the buffer size to the smallest possible value (128). Increasing this will in general increase performance. The default size is 1,024 and other good choices are 512 (the sector size in Windows) or 4,096 (the cluster size in NTFS). You will have to run a benchmark to determine an optimal buffer size. A bigger buffer is - if not faster - at least not slower than a smaller buffer.</p>
+
+<pre><code>const Int32 BufferSize = 128;
+    using (var fileStream = File.OpenRead(fileName))
+    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize)) {
+    String line;
+    while ((line = streamReader.ReadLine()) != null)
+    // Process line
+    }
+</code></pre>
+
+<p>This is very much like your own solution except that it is implemented using a <code>StreamReader</code> having a fixed buffer size of 1,024. On my computer this results in slightly better performance compared to your code having a buffer size of 128. However, you can get the same performance increase by using a larger buffer size. This method is implemented using an iterator block and does not consume memory for all lines.</p>
+
+<pre><code>var lines = File.ReadLines(fileName);
+    foreach (var line in lines)
+    // Process line
+</code></pre>
+
+
+<p>This is very much like the previous method except that this method grows a list of strings used to create the returned array of lines so the memory requirements are higher. However, it returns <code>String[]</code> and not an <code>IEnumerable&lt;String&gt;</code> allowing you to randomly access the lines.</p>
+
+<pre><code>var lines = File.ReadAllLines(fileName);
+    foreach (var line in lines)
+    // Process line
+</code></pre>
+
+<p>This method is considerable slower at least on big files (tested on 511 KB file) probably due to how <code>String.Split</code> is implemented. It also allocates an array for all the lines increasing the memory required compared to your solution.</p>
+
+<pre><code>using (var streamReader = File.OpenText(fileName)) {
+    var lines = streamReader.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+    foreach (var line in lines)
+    // Process line
+    }
+</code></pre>
+
+
+<p>I don't have enough points yet to add this as a comment where it might be more appropriate, but <a href="http://blogs.davelozinski.com/curiousconsultant/csharp-net-fastest-way-to-read-text-files">according to this website</a>, this is the absolute fastest way <em>most</em> of the time:</p>
+
+<pre><code>using (StreamReader sr = File.OpenText(fileName))
+    {
+    string s = String.Empty;
+    while ((s = sr.ReadLine()) != null)
+    {
+    //we're just testing read speeds
+    }
+    }
+</code></pre>
+
+
+<p>If file size is not big, is faster to read all file then split string:</p>
+
+<pre><code>var filestreams = sr.ReadToEnd().Split("\r\n".ToCharArray(),
+    StringSplitOptions.RemoveEmptyEntries);
+</code></pre>
+
+<p>The fastest bench marked code was the following:</p>
+
+<pre><code>using (StreamReader sr = File.OpenText(fileName))
+    {
+    string s = String.Empty;
+    while ((s = sr.ReadLine()) != null)
+    {
+    //we're just testing read speeds
+    }
+    }
+</code></pre>
+
+
+<p>However, if you have to do massive amounts of processing after the lines are read, <a href="http://blogs.davelozinski.com/curiousconsultant/the-fastest-way-to-read-and-process-text-files" rel="nofollow">then this article with benchmarks</a> concludes that the best way is the following. Notice the Parallel.For loop implementation and that the File.ReadAllLines() still isn't used -- faster to pre-allocate a string[] :</p>
+
+<pre><code>AllLines = new string[MAX]; //only allocate memory here
+    using (StreamReader sr = File.OpenText(fileName))
+    {
+    int x = 0;
+    while (!sr.EndOfStream)
+    {
+    AllLines[x] = sr.ReadLine();
+    x += 1;
+    }
+    } //CLOSE THE FILE because we are now DONE with it.
+    Parallel.For(0, AllLines.Length, x =&gt;
+    {
+    TestReadingAndProcessingLinesFromFile_DoStuff(AllLines[x]); //do your work here
+    });
+</code></pre>
+
+<p>Use the following code:</p>
+
+<pre><code>var lines = File.ReadAllLines(fileName);
+    foreach (var line in lines)
+</code></pre>

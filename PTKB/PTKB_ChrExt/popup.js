@@ -85,11 +85,9 @@ window.addEventListener("load", windowLoaded, false);
 
 function windowLoaded() {
 
-
-
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 
-        chrome.tabs.captureVisibleTab(null, function(img) {
+        chrome.tabs.captureVisibleTab(null, {format:'jpeg', quality: 0}, function(img) {
 
             var blob = dataURItoBlob(img);
             var tabUrl = tabs[0].url;

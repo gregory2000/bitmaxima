@@ -1,3 +1,4 @@
+.DS_Store
 PersonalPage_test/Page_Server/.idea/
 PersonalPage_test/Page_Server/node_modules/
 PersonalPage_test/Page_Client/.idea/
@@ -6,5 +7,9 @@ PersonalPage_test/Express/.idea/
 PersonalPage_test/Express/node_modules/
 PTKB/PTKB_Server/.idea/
 PTKB/PTKB_Server/node_modules/
+PTKB/PTKB_Server/public/docs/
+PTKB_Flask/Server/.idea/
+PTKB_Flask/Server/static/docs/
+PTKB_Django/Server/.idea/
 PTKB/PTKB_ChrExt/.idea/
 PTKB/PTKB_ChrExt/node_modules/

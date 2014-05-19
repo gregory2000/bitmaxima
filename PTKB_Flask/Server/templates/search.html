@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div id="main-wrapper" class="col-md-21 pull-right">
+        <div id="main">
+            <h2>Search Results</h2>
+            <div class="results">
+            {% for item in items %}
+                <div class="pagesBlock">
+                    <div class="title">
+                        <a class="item-link" href="{{ item.doc.id }}">{{ item.doc.title[0] }}</a>
+                        {% if item.imgPath != '#' %}
+                            <a class="previewIcon" href="{{ '/static' + item.imgPath }}" target="_blank">
+                                <img class="icon" src="/static/preview3_30.jpeg">
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="item-url-display">{{ item.doc.id }}</div>
+                    <div class="snippet">
+                        {{ item.highlight[0]|safe }}
+                    </div>
+                    {% if item.doc.id == 'http://stackoverflow.com/questions/8037070/whats-the-fastest-way-to-read-a-text-file-line-by-line' %}
+                        <div class="codePreview" id="codeDemo">
+                            <a>
+                                code
+                            </a>
+                        </div>
+                    {% endif %}
+                    <br/>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="code">
+                {% include "code.html" %}
+            </div>
+        </div>
+        <div class="preview" id="previewPane">
+            <img class="image" id ="previewImg"  src="">
+        </div>
+    </div>
+{% endblock %}
