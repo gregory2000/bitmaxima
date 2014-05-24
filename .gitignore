@@ -13,3 +13,9 @@ PTKB_Flask/Server/static/docs/
 PTKB_Django/Server/.idea/
 PTKB/PTKB_ChrExt/.idea/
 PTKB/PTKB_ChrExt/node_modules/
+java_api/.idea/
+java_api/lib/
+java_api/out/
+java_api/classes/
+java_api/src/edu/
+java_api/java_api.iml
