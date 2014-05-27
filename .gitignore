@@ -13,6 +13,8 @@ PTKB_Flask/Server/static/docs/
 PTKB_Django/Server/.idea/
 PTKB/PTKB_ChrExt/.idea/
 PTKB/PTKB_ChrExt/node_modules/
+alchemyapi_test/.idea/
+java_api/target/
 java_api/.idea/
 java_api/lib/
 java_api/out/
