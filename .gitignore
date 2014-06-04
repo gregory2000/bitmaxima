@@ -21,3 +21,7 @@ java_api/out/
 java_api/classes/
 java_api/src/edu/
 java_api/java_api.iml
+demo/twitter_data/.idea/
+demo/twitter_data/*.txt
+test/.idea/
+

@@ -25,10 +25,10 @@ print('############################################')
 print('')
 print('')
 
-print('Processing text: ', demo_text6)
+print('Processing text: ', demo_text2)
 print('')
 
-response = alchemyapi.sentiment('text', demo_text6)
+response = alchemyapi.sentiment('text', demo_text2)
 
 if response['status'] == 'OK':
     print('## Response Object ##')
